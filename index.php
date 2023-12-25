@@ -7,26 +7,34 @@ $username = "npfxzsjaxr";
 $password = "PKT58F3662KKRBTN$";
 $dbname = "gymbook-server";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$mysqli_config = [
+    "ssl" => [
+        "key"    => "path/to/client-key.pem",
+        "cert"   => "path/to/client-cert.pem",
+        "ca"     => "path/to/ca-cert.pem",
+    ],
+];
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+try {
+    // Create secure connection
+    $conn = new mysqli($servername, $username, $password, $dbname, null, null, $mysqli_config);
 
-// Query to get all tables in the database
-$sql = "SHOW TABLES";
-$result = $conn->query($sql);
 
-// Check if there are any tables
-if ($result->num_rows > 0) {
-    echo "Tables in the database: <br>";
-    while ($row = $result->fetch_assoc()) {
-        echo $row["Tables_in_" . $dbname] . "<br>";
+    // Query to get all tables in the database
+    $sql = "SHOW TABLES";
+    $result = $conn->query($sql);
+
+    // Check if there are any tables
+    if ($result->num_rows > 0) {
+        echo "Tables in the database: <br>";
+        while ($row = $result->fetch_assoc()) {
+            echo $row["Tables_in_" . $dbname] . "<br>";
+        }
+    } else {
+        echo "No tables found in the database.";
     }
-} else {
-    echo "No tables found in the database.";
-}
 
-// Close connection
-$conn->close();
+    $conn->close();
+} catch (Exception $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
