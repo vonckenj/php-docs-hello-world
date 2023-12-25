@@ -7,13 +7,9 @@ $username = "npfxzsjaxr";
 $password = "PKT58F3662KKRBTN$";
 $dbname = "gymbook-server";
 
-$mysqli_config = [
-    "ssl" => [
-        "key"    => "path/to/client-key.pem",
-        "cert"   => "path/to/client-cert.pem",
-        "ca"     => "path/to/ca-cert.pem",
-    ],
-];
+$conn = mysqli_init();
+mysqli_ssl_set($conn,NULL,NULL, "vonckenj/php-docs-hello-world/.github/workflows/ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+mysqli_real_connect($conn, "gymbook-server.mysql.database.azure.com", "npfxzsjaxr", "{your_password}", "{your_database}", 3306, MYSQLI_CLIENT_SSL);
 
 try {
     // Create secure connection
