@@ -7,15 +7,12 @@ ini_set('display_errors', 1);
 //$password = "Ndu78Dji3nk89)9SDF";
 //$dbname = "gymbook-server";
 
-$conn = mysqli_init();
-mysqli_ssl_set($conn,NULL,NULL, "DigiCertGlobalRootCA.crt.pem", NULL, NULL);
-mysqli_real_connect($conn, "gymbook-server.mysql.database.azure.com", "npfxzsjaxr", "Ndu78Dji3nk89)9SDF", "gymbook-database", 3306, MYSQLI_CLIENT_SSL);
 
 try {
-    // Create secure connection
-    $conn = new mysqli($servername, $username, $password, $dbname, null, null, $mysqli_config);
-
-
+    $conn = mysqli_init();
+    mysqli_ssl_set($conn,NULL,NULL, "DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+    mysqli_real_connect($conn, "gymbook-server.mysql.database.azure.com", "npfxzsjaxr", "Ndu78Dji3nk89)9SDF", "gymbook-database", 3306, MYSQLI_CLIENT_SSL);
+    
     // Query to get all tables in the database
     $sql = "SHOW TABLES";
     $result = $conn->query($sql);
