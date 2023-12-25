@@ -8,7 +8,7 @@ $password = "Ndu78Dji3nk89)9SDF";
 $dbname = "gymbook-server";
 
 $conn = mysqli_init();
-mysqli_ssl_set($conn,NULL,NULL, "/ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
+mysqli_ssl_set($conn,NULL,NULL, "ssl/DigiCertGlobalRootCA.crt.pem", NULL, NULL);
 mysqli_real_connect($conn, "gymbook-server.mysql.database.azure.com", "npfxzsjaxr", "Ndu78Dji3nk89)9SDF", "gymbook-server", 3306, MYSQLI_CLIENT_SSL);
 
 try {
