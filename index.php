@@ -32,6 +32,3 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-echo <"PRE">;
-print_r($_SESSION);
-echo <"/PRE">;
